@@ -29,7 +29,11 @@ public class BasePOM {
     }
 
     protected void waitForVisibilityAndClick(By locator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (TimeoutException e) {
+            Assert.fail("Waited for visibility of " + locator.toString(), e);
+        }
         driver.findElement(locator).click();
     }
 

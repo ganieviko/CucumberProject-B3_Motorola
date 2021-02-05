@@ -9,9 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import pom.BasePOM;
-import pom.LoginPage;
-import pom.MenuComponent;
+import pom.*;
 
 public class NationalitySteps {
     @Given("I navigate to website")
@@ -41,13 +39,21 @@ public class NationalitySteps {
 
     @When("I create nationality")
     public void iCreateNationality() {
+        NationalitiesComponent component = new NationalitiesComponent(BasePOM.getDriver());
+        component.clickOnPlusButton();
+        component.enterName("name");
+        component.save();
     }
 
     @Then("I see success message {string}")
     public void iSeeSuccessMessage(String arg0) {
+        PopupMessageComponent component = new PopupMessageComponent(BasePOM.getDriver());
+        component.waitForMessage(arg0);
     }
 
     @When("I delete nationality")
     public void iDeleteNationality() {
+        BrowserComponent component = new BrowserComponent(BasePOM.getDriver());
+        component.deleteRow("name");
     }
 }
