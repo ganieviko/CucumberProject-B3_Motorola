@@ -5,10 +5,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import pom.BasePOM;
 import pom.LoginPage;
+import pom.MenuComponent;
 
 public class NationalitySteps {
     @Given("I navigate to website")
@@ -18,6 +21,7 @@ public class NationalitySteps {
         driver.manage().window().maximize();
         driver.get("https://test.campus.techno.study/");
         LoginPage loginPage = new LoginPage(driver);
+
         loginPage.fillInUserName("daulet2030@gmail.com");
         loginPage.fillInUserPassword("TechnoStudy123@");
         loginPage.login();
@@ -26,6 +30,13 @@ public class NationalitySteps {
 
     @And("I go to nationality menu")
     public void iGoToNationalityMenu() {
+        MenuComponent menuComponent = new MenuComponent(BasePOM.getDriver());
+        menuComponent.setWait(new WebDriverWait(BasePOM.getDriver(), 5));
+        menuComponent.navigateToSetup();
+        menuComponent.navigateToParametersMenu();
+        menuComponent.navigateToNationalityMenu();
+
+        Assert.assertEquals(menuComponent.getTitle(), "Nationalities");
     }
 
     @When("I create nationality")
