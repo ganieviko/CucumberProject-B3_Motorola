@@ -7,6 +7,7 @@ public class NationalitiesComponent extends BasePOM {
     public static By plusButton = By.cssSelector("ms-table-toolbar > div ms-add-button");
     public static By nameInput = By.cssSelector("mat-dialog-container [placeholder='GENERAL.FIELD.NAME']>input");
     public static By saveButton = By.cssSelector("mat-dialog-container ms-save-button");
+    public static By closeDialogButton = By.cssSelector("mat-dialog-container button[aria-label='Close dialog']");
 
     public NationalitiesComponent(WebDriver driver) {
         this.driver = driver;
@@ -23,6 +24,9 @@ public class NationalitiesComponent extends BasePOM {
 
     public void save() {
         waitForVisibilityAndClick(saveButton);
+    }
 
+    public void closeDialog() {
+        waitForVisibilityAndClick(closeDialogButton);
     }
 }

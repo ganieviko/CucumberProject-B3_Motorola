@@ -12,6 +12,9 @@ import org.testng.Assert;
 import pom.*;
 
 public class NationalitySteps {
+    private String savedNationalityName;
+    private NationalitiesComponent nationalitiesComponent;
+
     @Given("I navigate to website")
     public void iNavigateToWebsite() {
         WebDriverManager.chromedriver().setup();
@@ -37,23 +40,33 @@ public class NationalitySteps {
         Assert.assertEquals(menuComponent.getTitle(), "Nationalities");
     }
 
-    @When("I create nationality")
-    public void iCreateNationality() {
-        NationalitiesComponent component = new NationalitiesComponent(BasePOM.getDriver());
-        component.clickOnPlusButton();
-        component.enterName("name");
-        component.save();
+    @When("I create nationality with name {string}")
+    public void iCreateNationality(String name) {
+        savedNationalityName = name;
+        nationalitiesComponent = new NationalitiesComponent(BasePOM.getDriver());
+        nationalitiesComponent.clickOnPlusButton();
+        nationalitiesComponent.enterName(name);
+        nationalitiesComponent.save();
     }
 
-    @Then("I see success message {string}")
-    public void iSeeSuccessMessage(String arg0) {
+    @Then("I see {word} message {string}")
+    public void iSeeSuccessMessage(String type, String arg0) {
         PopupMessageComponent component = new PopupMessageComponent(BasePOM.getDriver());
         component.waitForMessage(arg0);
+        if(type.equals("error")) {
+            nationalitiesComponent.closeDialog();
+        }
     }
 
-    @When("I delete nationality")
-    public void iDeleteNationality() {
+    @When("I delete nationality with name {string}")
+    public void iDeleteNationality(String name) {
         BrowserComponent component = new BrowserComponent(BasePOM.getDriver());
-        component.deleteRow("name");
+        component.deleteRow(name);
+    }
+
+    @When("I delete saved nationality")
+    public void iDeleteSavedNationality() {
+        BrowserComponent component = new BrowserComponent(BasePOM.getDriver());
+        component.deleteRow(savedNationalityName);
     }
 }
