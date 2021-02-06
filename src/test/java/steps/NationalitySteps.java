@@ -14,6 +14,7 @@ import pom.*;
 public class NationalitySteps {
     private String savedNationalityName;
     private NationalitiesComponent nationalitiesComponent;
+    private BrowserComponent browserComponent = new BrowserComponent(BasePOM.getDriver());;
 
     @Given("I navigate to website")
     public void iNavigateToWebsite() {
@@ -60,13 +61,19 @@ public class NationalitySteps {
 
     @When("I delete nationality with name {string}")
     public void iDeleteNationality(String name) {
-        BrowserComponent component = new BrowserComponent(BasePOM.getDriver());
-        component.deleteRow(name);
+        browserComponent.deleteRow(name);
     }
 
     @When("I delete saved nationality")
     public void iDeleteSavedNationality() {
         BrowserComponent component = new BrowserComponent(BasePOM.getDriver());
         component.deleteRow(savedNationalityName);
+    }
+
+    @When("I edit nationality with name {string} to {string}")
+    public void iEditNationalityWithNameTo(String oldName, String newName) {
+        browserComponent.clickOnEdit(oldName);
+        nationalitiesComponent.enterName(newName);
+        nationalitiesComponent.save();
     }
 }

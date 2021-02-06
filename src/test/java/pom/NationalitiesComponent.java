@@ -2,6 +2,7 @@ package pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class NationalitiesComponent extends BasePOM {
     public static By plusButton = By.cssSelector("ms-table-toolbar > div ms-add-button");
@@ -19,7 +20,9 @@ public class NationalitiesComponent extends BasePOM {
 
     public void enterName(String name) {
         waitForVisibilityAndClick(nameInput);
-        driver.findElement(nameInput).sendKeys(name);
+        WebElement element = driver.findElement(nameInput);
+        element.clear();
+        element.sendKeys(name);
     }
 
     public void save() {
