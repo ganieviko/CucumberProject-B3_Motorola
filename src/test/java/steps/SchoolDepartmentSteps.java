@@ -18,7 +18,7 @@ public class SchoolDepartmentSteps {
     private int numberOfRowsBeforeSave;
     private String randomName;
     private String randomCode;
-    private DepartmentComponent departmentComponent = new DepartmentComponent(BasePOM.getDriver());
+    private DepartmentComponent departmentComponent = new DepartmentComponent();
 
     @When("I create department with name {string} and code {string}")
     public void iCreateDepartmentWithNameAndCode(String name, String code) {
@@ -43,7 +43,7 @@ public class SchoolDepartmentSteps {
 
     @When("I delete the department with name random and code random")
     public void iDeleteTheDepartmentWithRandomNameAndCode() {
-        BrowserComponent browserComponent = new BrowserComponent(BasePOM.getDriver());
+        BrowserComponent browserComponent = new BrowserComponent();
         browserComponent.deleteRow(randomName);
     }
 

@@ -14,13 +14,9 @@ public class BrowserComponent extends BasePOM {
     public static By confirmYes = By.cssSelector("button[type='submit']");
     public static By editButton = By.cssSelector("ms-edit-button");;
 
-    public BrowserComponent(WebDriver driver) {
-        this.driver = driver;
-    }
-
     public void deleteRow(String name) {
         waitForAngularStability(5);
-        List<WebElement> rows = driver.findElements(browserTableRows);
+        List<WebElement> rows = BasePOM.getDriver().findElements(browserTableRows);
         boolean found = false;
         for (WebElement row : rows) {
             if (row.getText().contains(name)) {
@@ -35,7 +31,7 @@ public class BrowserComponent extends BasePOM {
 
     public void clickOnEdit(String oldName) {
         waitForAngularStability(5);
-        List<WebElement> rows = driver.findElements(browserTableRows);
+        List<WebElement> rows = BasePOM.getDriver().findElements(browserTableRows);
         boolean found = false;
         for (WebElement row : rows) {
             if (row.getText().contains(oldName)) {

@@ -7,12 +7,9 @@ import org.openqa.selenium.WebElement;
 public class NationalitiesComponent extends DialogComponent {
     public static By nameInput = By.cssSelector("mat-dialog-container [placeholder='GENERAL.FIELD.NAME']>input");
 
-    public NationalitiesComponent(WebDriver driver) {
-        super(driver);
-    }
     public void enterName(String name) {
         waitForVisibilityAndClick(nameInput);
-        WebElement element = driver.findElement(nameInput);
+        WebElement element = BasePOM.getDriver().findElement(nameInput);
         element.clear();
         element.sendKeys(name);
     }

@@ -12,24 +12,20 @@ public class LoginPage extends BasePOM {
     public By loginButton = By.cssSelector("button[aria-label='LOGIN']");
     public By menu = By.cssSelector("svg[data-icon=\"bars\"]");
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-    }
-
     public void fillInUserName(String username) {
-        driver.findElement(this.username).sendKeys(username);
+        BasePOM.getDriver().findElement(this.username).sendKeys(username);
     }
 
     public void fillInUserPassword(String password){
-        driver.findElement(this.password).sendKeys(password);
+        BasePOM.getDriver().findElement(this.password).sendKeys(password);
     }
 
     public void login(){
-        driver.findElement(loginButton).click();
+        BasePOM.getDriver().findElement(loginButton).click();
     }
 
     public boolean isLoggedIn() {
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+        WebDriverWait wait = new WebDriverWait(BasePOM.getDriver(), 5);
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(menu));
         } catch (TimeoutException e) {

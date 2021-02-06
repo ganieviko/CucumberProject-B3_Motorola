@@ -7,13 +7,9 @@ public class MenuComponent extends BasePOM {
     public By toolbarTitle = By.cssSelector("toolbar h3");
     private String cssSelector;
 
-    public MenuComponent(WebDriver driver) {
-        this.driver = driver;
-    }
-
     public String getTitle() {
         waitForAngularStability(5);
-        return driver.findElement(toolbarTitle).getText();
+        return BasePOM.getDriver().findElement(toolbarTitle).getText();
     }
 
     public void navigateFirstLevel(int firstLevel) {

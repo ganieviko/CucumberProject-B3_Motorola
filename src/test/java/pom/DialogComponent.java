@@ -9,10 +9,6 @@ public class DialogComponent extends BasePOM {
     public static By saveButton = By.cssSelector("mat-dialog-container ms-save-button");
     public static By closeDialogButton = By.cssSelector("mat-dialog-container button[aria-label='Close dialog']");
 
-    public DialogComponent(WebDriver driver) {
-        this.driver = driver;
-    }
-
     public void clickOnPlusButton() {
         waitForVisibilityAndClick(plusButton);
     }

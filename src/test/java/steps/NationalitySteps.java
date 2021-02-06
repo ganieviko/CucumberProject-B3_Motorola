@@ -6,12 +6,12 @@ import pom.*;
 public class NationalitySteps {
     private String savedNationalityName;
     private NationalitiesComponent nationalitiesComponent;
-    private BrowserComponent browserComponent = new BrowserComponent(BasePOM.getDriver());;
+    private BrowserComponent browserComponent = new BrowserComponent();;
 
     @When("I create nationality with name {string}")
     public void iCreateNationality(String name) {
         savedNationalityName = name;
-        nationalitiesComponent = new NationalitiesComponent(BasePOM.getDriver());
+        nationalitiesComponent = new NationalitiesComponent();
         nationalitiesComponent.clickOnPlusButton();
         nationalitiesComponent.enterName(name);
         nationalitiesComponent.save();
@@ -19,7 +19,7 @@ public class NationalitySteps {
 
     @When("I delete saved nationality")
     public void iDeleteSavedNationality() {
-        BrowserComponent component = new BrowserComponent(BasePOM.getDriver());
+        BrowserComponent component = new BrowserComponent();
         component.deleteRow(savedNationalityName);
     }
 
