@@ -4,22 +4,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pom.*;
 
 public class GenericSteps {
     @Given("I navigate to website {string}")
     public void iNavigateToWebsite(String url) {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(url);
-        BasePOM.setDriver(driver);
-        BasePOM.setWait(new WebDriverWait(driver, 5));
+        BasePOM.getDriver().get(url);
     }
     @And("I login using username:{word} and password {string}")
     public void iLoginUsingUsernameAndPassword(String username, String password) {
