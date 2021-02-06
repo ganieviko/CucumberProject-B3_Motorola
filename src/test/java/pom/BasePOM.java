@@ -16,6 +16,10 @@ public class BasePOM {
     protected static WebDriver driver;
     protected static WebDriverWait wait;
 
+    public static void setDriver(WebDriver driver) {
+        BasePOM.driver = driver;
+    }
+
     public static WebDriver getDriver() {
         return driver;
     }
