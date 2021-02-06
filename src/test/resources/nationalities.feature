@@ -20,5 +20,5 @@ Feature: Testing nationalities
   Scenario: Edit a nationality (create, edit and delete it)
     When I edit nationality with name "French" to "Frenchman"
     Then I see success message "Nationality successfully updated"
-    When I delete nationality with name "Frenchman"
+    When I delete row with name "Frenchman"
     Then I see success message "Nationality successfully deleted"

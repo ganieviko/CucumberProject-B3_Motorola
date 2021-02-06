@@ -17,13 +17,6 @@ public class NationalitySteps {
         nationalitiesComponent.save();
     }
 
-
-
-    @When("I delete nationality with name {string}")
-    public void iDeleteNationality(String name) {
-        browserComponent.deleteRow(name);
-    }
-
     @When("I delete saved nationality")
     public void iDeleteSavedNationality() {
         BrowserComponent component = new BrowserComponent(BasePOM.getDriver());
