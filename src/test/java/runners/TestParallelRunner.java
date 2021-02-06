@@ -6,6 +6,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import pom.BasePOM;
@@ -16,9 +17,9 @@ import pom.BasePOM;
         plugin = {"pretty", "html:target/report/index.html"}
 )
 public class TestParallelRunner extends AbstractTestNGCucumberTests {
-    @BeforeClass
+    @AfterMethod
     public void setUpDriver() {
-
+        BasePOM.getDriver().quit();
     }
 
     @Override
