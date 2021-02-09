@@ -1,8 +1,7 @@
 Feature: School Department
 
   Background:
-    Given I navigate to website "https://test.campus.techno.study/"
-    And I login using username:daulet2030@gmail.com and password "TechnoStudy123@"
+    Given I navigate and login to website define in excel "loginDetails.xlsx"
     And I go to menu 1 2 6
 
   Scenario: Successfully creating and deleting "High School" department

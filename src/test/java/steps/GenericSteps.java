@@ -6,6 +6,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import pom.*;
+import utils.ExcelReader;
+
+import java.io.IOException;
+import java.util.Map;
 
 public class GenericSteps {
     @Given("I navigate to website {string}")
@@ -43,5 +47,17 @@ public class GenericSteps {
     public void iDeleteNationality(String name) {
         BrowserComponent browserComponent = new BrowserComponent();
         browserComponent.deleteRow(name);
+    }
+
+    @Given("I navigate and login to website define in excel {string}")
+    public void iNavigateAndLoginToWebsiteDefineInExcel(String fileName) throws IOException {
+        ExcelReader reader = new ExcelReader("src/test/resources/excels/"+fileName);
+        Map<String, String> loginDetails = reader.getMap();
+        BasePOM.getDriver().get(loginDetails.get("url"));
+        LoginPage loginPage = new LoginPage();
+        loginPage.fillInUserName(loginDetails.get("username"));
+        loginPage.fillInUserPassword(loginDetails.get("password"));
+        loginPage.login();
+        Assert.assertTrue(loginPage.isLoggedIn());
     }
 }
