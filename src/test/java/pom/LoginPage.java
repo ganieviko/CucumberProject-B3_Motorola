@@ -13,10 +13,12 @@ public class LoginPage extends BasePOM {
     public By menu = By.cssSelector("svg[data-icon=\"bars\"]");
 
     public void fillInUserName(String username) {
+        BasePOM.getDriver().findElement(this.username).clear();
         BasePOM.getDriver().findElement(this.username).sendKeys(username);
     }
 
     public void fillInUserPassword(String password){
+        BasePOM.getDriver().findElement(this.password).clear();
         BasePOM.getDriver().findElement(this.password).sendKeys(password);
     }
 
